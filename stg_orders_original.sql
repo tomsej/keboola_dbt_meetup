@@ -1,14 +1,5 @@
-
-
-{{
-    config(
-        materialized='table'
-    )
-}}
-
 with source as (
-
-    select * from {{ ref('raw_orders') }}
+    select * from "postgres"."manual_input"."raw_orders"
 
 ),
 
@@ -19,6 +10,7 @@ renamed as (
         user_id as customer_id,
         order_date,
         status
+
     from source
 
 )
